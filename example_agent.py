@@ -13,7 +13,7 @@ if __name__ == '__main__':
     logger.setLevel(logging.INFO)
 
     # Set up client
-    remote_base = 'http://127.0.0.1:5000'
+    remote_base = 'http://0.0.0.0:5000'
     client = Client(remote_base)
 
     # Set up environment
