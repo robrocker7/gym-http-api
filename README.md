@@ -24,7 +24,7 @@ This code is intended to be run locally by a single user. The server runs in pyt
 
 To start the server from the command line, run this:
 
-    python gym_http_server.py
+    gunicorn --bind 0.0.0.0:5000 wsgi:app -t 4
 
 In a separate terminal, you can then try running the example python agent and see what happens:
 
