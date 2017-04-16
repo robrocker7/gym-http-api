@@ -20,11 +20,15 @@ To download the code and install the requirements, you can run the following she
 Getting started
 ============
 
-This code is intended to be run locally by a single user. The server runs in python. You can implement your own HTTP clients using any language; a demo client written in python is provided to demonstrate the idea.
+This code is intended to be run locally by a single user. The server runs in a gunicorn process. You can implement your own HTTP clients using any language; a demo client written in python is provided to demonstrate the idea.
 
-To start the server from the command line, run this:
+To start the gunicorn server from the command line, run this:
 
-    gunicorn --bind 0.0.0.0:5000 wsgi:app -t 4
+    gunicorn --bind 0.0.0.0:5000 wsgi:app
+
+In addition to the standard command you may also utitlize multi worker support. Note: Each worker will utilize the same number of threads. [gunicorn#threads](http://docs.gunicorn.org/en/stable/settings.html#threads)
+
+    gunicorn --bind 0.0.0.0:5000 wsgi:app --workers=2 --threads=2
 
 In a separate terminal, you can then try running the example python agent and see what happens:
 
