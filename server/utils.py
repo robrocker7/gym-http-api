@@ -2,6 +2,11 @@ import json
 
 from server.exceptions import InvalidUsage
 
+import logging
+logger = logging.getLogger('robrocker7')
+logger.setLevel(logging.ERROR)
+
+
 def get_required_param(json, param):
     if json is None:
         logger.info("Request is not a valid json")

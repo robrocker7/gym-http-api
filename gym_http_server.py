@@ -22,4 +22,4 @@ if __name__ == '__main__':
     print('Server starting at: ' + 'http://{}:{}'.format(args.listen, args.port))
     
     from server.flask_app import app
-    app.run(host=args.listen, port=args.port)
+    app.run()

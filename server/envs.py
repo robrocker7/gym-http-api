@@ -1,3 +1,8 @@
+import gym
+import six
+import uuid
+from gym import wrappers
+
 ########## Container for environments ##########
 class Envs(object):
     """
