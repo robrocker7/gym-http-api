@@ -24,11 +24,11 @@ This code is intended to be run locally by a single user. The server runs in a g
 
 To start the gunicorn server from the command line, run this:
 
-    gunicorn --bind 0.0.0.0:5000 wsgi:app
+    gunicorn -k gevent --bind 0.0.0.0:5000 wsgi:app
 
 In addition to the standard command you may also utitlize multi worker support. Note: Each worker will utilize the same number of threads. [gunicorn#threads](http://docs.gunicorn.org/en/stable/settings.html#threads)
 
-    gunicorn --bind 0.0.0.0:5000 wsgi:app --workers=2 --threads=2
+    gunicorn -k gevent --bind 0.0.0.0:5000 wsgi:app --workers=2 --threads=2
 
 In a separate terminal, you can then try running the example python agent and see what happens:
 
