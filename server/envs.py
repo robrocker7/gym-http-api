@@ -2,6 +2,8 @@ import gym
 import six
 import uuid
 from gym import wrappers
+from GenericCache.GenericCache import GenericCache
+from server.exceptions import InvalidUsage
 
 ########## Container for environments ##########
 class Envs(object):
@@ -18,6 +20,7 @@ class Envs(object):
     def __init__(self):
         self.envs = {}
         self.id_len = 8
+        self.memory = GenericCache()
 
     def _lookup_env(self, instance_id):
         try:
@@ -32,6 +35,10 @@ class Envs(object):
             raise InvalidUsage('Instance_id {} unknown'.format(instance_id))
 
     def create(self, env_id):
+        instance_id = self.memory.fetch(env_id)
+        if instance_id is not None:
+            return instance_id
+
         try:
             env = gym.make(env_id)
         except gym.error.Error:
@@ -39,6 +46,7 @@ class Envs(object):
 
         instance_id = str(uuid.uuid4().hex)[:self.id_len]
         self.envs[instance_id] = env
+        self.memory.insert(env_id, instance_id)
         return instance_id
 
     def list_all(self):

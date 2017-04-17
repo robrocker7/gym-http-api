@@ -3,7 +3,7 @@ import json
 from server.exceptions import InvalidUsage
 
 import logging
-logger = logging.getLogger('robrocker7')
+logger = logging.getLogger('werkzeug')
 logger.setLevel(logging.ERROR)
 
 

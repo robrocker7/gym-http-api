@@ -25,7 +25,6 @@ class Client(object):
             # sends its errors in json). Don't let parse exception go up, but rather raise default
             # error.
             resp.raise_for_status()
-        logger.error(j)
         if resp.status_code != 200 and "message" in j:  # descriptive message from server side
             raise ServerError(message=j["message"], status_code=resp.status_code)
         resp.raise_for_status()
